@@ -167,17 +167,21 @@ authentication experience, and the forms use [Bootstrap] markup.
 ### Current account
 
 The Rodauth object defines a `#rails_account` method, which returns a model
-instance of the currently logged in account. You can create a helper method for
-easy access from controllers and views:
+instance of the currently logged in account. Using this method, `#current_account`
+is defined and included in your controllers by rodauth-rails, and is also
+made a helper method by default.
+
+If you want `current_user` instead, you can define it and create a helper method for
+easy access from views:
 
 ```rb
 class ApplicationController < ActionController::Base
   private
 
-  def current_account
-    rodauth.rails_account
+  def current_user
+    current_account
   end
-  helper_method :current_account # skip if inheriting from ActionController::API
+  helper_method :current_user # skip if inheriting from ActionController::API
 end
 ```
 
